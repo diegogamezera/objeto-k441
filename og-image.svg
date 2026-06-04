@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0c110d"/>
+      <stop offset="0.55" stop-color="#080c09"/>
+      <stop offset="1" stop-color="#050705"/>
+    </linearGradient>
+    <radialGradient id="glowAmber" cx="0.5" cy="0" r="0.8">
+      <stop offset="0" stop-color="#e9a23b" stop-opacity="0.10"/>
+      <stop offset="1" stop-color="#e9a23b" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowGreen" cx="0.5" cy="1.15" r="0.9">
+      <stop offset="0" stop-color="#6fe39a" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#6fe39a" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="sigilGlow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#6fe39a" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#6fe39a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="sigilFill" x1="0.3" y1="0.2" x2="0.8" y2="1">
+      <stop offset="0" stop-color="#1d2c20"/>
+      <stop offset="1" stop-color="#0a0f0b"/>
+    </linearGradient>
+    <pattern id="scan" width="6" height="6" patternUnits="userSpaceOnUse">
+      <rect width="6" height="6" fill="none"/>
+      <rect width="6" height="3" fill="#000000" opacity="0.18"/>
+    </pattern>
+  </defs>
+
+  <!-- base -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glowAmber)"/>
+  <rect width="1200" height="630" fill="url(#glowGreen)"/>
+
+  <!-- border frame -->
+  <rect x="22" y="22" width="1156" height="586" rx="22" fill="none" stroke="#1c2a20" stroke-width="2"/>
+  <rect x="22" y="22" width="1156" height="586" rx="22" fill="url(#scan)"/>
+
+  <!-- corner ticks -->
+  <g stroke="#2f6a45" stroke-width="2" opacity="0.7">
+    <path d="M52 40 h26 M52 40 v26" fill="none"/>
+    <path d="M1148 40 h-26 M1148 40 v26" fill="none"/>
+    <path d="M52 590 h26 M52 590 v-26" fill="none"/>
+    <path d="M1148 590 h-26 M1148 590 v-26" fill="none"/>
+  </g>
+
+  <!-- sigil -->
+  <g transform="translate(600,168)">
+    <circle cx="0" cy="0" r="95" fill="url(#sigilGlow)"/>
+    <g transform="scale(4.2) translate(-12,-12)">
+      <path d="M12 2 L20 7 V17 L12 22 L4 17 V7 Z" fill="url(#sigilFill)" stroke="#6fe39a" stroke-width="1.1"/>
+      <circle cx="12" cy="12" r="3.2" fill="none" stroke="#e9a23b" stroke-width="1.1"/>
+    </g>
+  </g>
+
+  <!-- kicker -->
+  <text x="600" y="300" text-anchor="middle" font-family="Consolas, monospace" font-size="22" letter-spacing="7" fill="#8a6526">PORT REGISTRY &#183; BERTH 44</text>
+
+  <!-- title -->
+  <text x="600" y="392" text-anchor="middle" font-family="Consolas, monospace" font-weight="bold" font-size="104" letter-spacing="4" fill="#e7ede8">OBJECT <tspan fill="#6fe39a">K-441</tspan></text>
+
+  <!-- tagline -->
+  <text x="600" y="456" text-anchor="middle" font-family="Segoe UI, sans-serif" font-style="italic" font-size="33" fill="#6fe39a">&#8220;You should have read the whole file.&#8221;</text>
+
+  <!-- bottom divider -->
+  <line x1="360" y1="512" x2="840" y2="512" stroke="#1c2a20" stroke-width="1.5"/>
+
+  <!-- bottom label -->
+  <text x="600" y="552" text-anchor="middle" font-family="Consolas, monospace" font-size="21" letter-spacing="5" fill="#9fb0a4">AN INTERACTIVE DRAMA &#183; CHOOSE WHAT SHE DOES NEXT</text>
+
+  <!-- live status pill -->
+  <g transform="translate(600,584)">
+    <circle cx="-118" cy="0" r="5" fill="#6fe39a"/>
+    <text x="-104" y="5" font-family="Consolas, monospace" font-size="17" letter-spacing="3" fill="#5c6b60">SECURE CHANNEL &#183; ONLINE</text>
+  </g>
+</svg>
