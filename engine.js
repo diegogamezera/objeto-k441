@@ -55,8 +55,8 @@ function esc(t){ return t; } // textos já são controlados
 
 function setThreat(t){
   state.threat = t;
-  const el = $('#threatTxt'); if(el) el.innerHTML = 'AMEAÇA: <b>'+t+'</b>';
-  const dotc = {NOMINAL:'#6fe39a','ELEVADA':'#e9a23b','CRÍTICA':'#e0664f'};
+  const el = $('#threatTxt'); if(el) el.innerHTML = 'THREAT: <b>'+t+'</b>';
+  const dotc = {NOMINAL:'#6fe39a','ELEVATED':'#e9a23b','CRITICAL':'#e0664f'};
   $('#statusDot').style.background = dotc[t]||'#6fe39a';
   $('#statusDot').style.boxShadow = '0 0 8px '+(dotc[t]||'#6fe39a');
 }
@@ -64,7 +64,7 @@ function setStatus(txt){ $('#statusTxt').textContent = txt; }
 
 /* ---------- RENDER MENSAGENS ---------- */
 function nameFor(who){
-  return {helene:'Helene', grim:'GRIM-7', tessa:'Tessavrak ⟶ trad.', you:'Você', sys:''}[who] || '';
+  return {helene:'Helene', grim:'GRIM-7', tessa:'Tessavrak ⟶ transl.', you:'You', sys:''}[who] || '';
 }
 function addMessage(who, text){
   const m = document.createElement('div');
@@ -83,10 +83,10 @@ async function typing(who, ms){
   t.className = 'typing'+(who==='grim'?' gr':'');
   t.innerHTML = '<span></span><span></span><span></span>';
   chat.appendChild(t); scrollDown();
-  setStatus(who==='grim'?'GRIM-7 transmitindo…':(who==='tessa'?'traduzindo…':'digitando…'));
+  setStatus(who==='grim'?'GRIM-7 transmitting…':(who==='tessa'?'translating…':'typing…'));
   await waitSkip(ms);
   t.remove();
-  setStatus('canal seguro · online');
+  setStatus('secure channel · online');
 }
 // espera interrompível por skip
 async function waitSkip(ms){
@@ -118,9 +118,9 @@ async function offlineWait(secs, titleTxt, descTxt){
     $('#statusDot').style.animation='none'; $('#statusDot').style.opacity='.3';
     const card = document.createElement('div');
     card.className = 'waitcard fade-in';
-    card.innerHTML = '<div class="t">'+(titleTxt||'HELENE ESTÁ OCUPADA')+'</div>'+
-      '<div class="clock">--:--</div><div class="d">'+(descTxt||'voltará em breve')+'</div>'+
-      '<div class="skip">▸ pular espera</div>';
+    card.innerHTML = '<div class="t">'+(titleTxt||'HELENE IS BUSY')+'</div>'+
+      '<div class="clock">--:--</div><div class="d">'+(descTxt||'back shortly')+'</div>'+
+      '<div class="skip">▸ skip wait</div>';
     chat.appendChild(card); scrollDown();
     const clock = card.querySelector('.clock');
     let remain = secs;
@@ -130,7 +130,7 @@ async function offlineWait(secs, titleTxt, descTxt){
       clearInterval(iv);
       card.remove();
       $('#statusDot').style.animation=''; $('#statusDot').style.opacity='';
-      setStatus('canal seguro · online');
+      setStatus('secure channel · online');
       resolve();
     };
     const iv = setInterval(()=>{
@@ -148,7 +148,7 @@ function showContinue(next){
   clearDock();
   const wrap = document.createElement('div'); wrap.className='choices';
   const b = document.createElement('button');
-  b.className='tapnext'; b.textContent='▸ continuar';
+  b.className='tapnext'; b.textContent='▸ continue';
   b.onclick = ()=>{ if(busy) return; snd.tick(); goto(next); };
   wrap.appendChild(b); dock.appendChild(b);
 }
@@ -189,9 +189,9 @@ async function goto(id){
   if(node.chapter) chapterBanner(node.chapter);
 
   // ajuste de ambiente por capítulo
-  if(id==='ch4_breach_intro'){ setThreat('CRÍTICA'); snd.alarm(); }
-  if(id==='ch4_arrival'){ setThreat('CRÍTICA'); }
-  if(id==='ch5_intro'){ setThreat('ELEVADA'); }
+  if(id==='ch4_breach_intro'){ setThreat('CRITICAL'); snd.alarm(); }
+  if(id==='ch4_arrival'){ setThreat('CRITICAL'); }
+  if(id==='ch5_intro'){ setThreat('ELEVATED'); }
   if(id==='finale'){ setThreat('NOMINAL'); }
 
   if(node.wait){
@@ -235,13 +235,13 @@ function showEnding(e){
   if(death){
     snd.dead();
     const cp = e.retry || state.checkpoint;
-    const b1 = mkBtn('amber','▸ Tentar de novo', ()=>{ hideEnd(); goto(cp); });
-    const b2 = mkBtn('ghost','Recomeçar do início', ()=>{ wipe(); hideEnd(); goto('start'); });
+    const b1 = mkBtn('amber','▸ Try again', ()=>{ hideEnd(); goto(cp); });
+    const b2 = mkBtn('ghost','Restart from the beginning', ()=>{ wipe(); hideEnd(); goto('start'); });
     btns.append(b1,b2);
     if(e.stat){ const s=document.createElement('p'); s.className='statline'; s.textContent=e.stat; btns.appendChild(s); }
   }else{
     snd.win();
-    const b1 = mkBtn('','▸ Jogar de novo', ()=>{ wipe(); hideEnd(); goto('start'); });
+    const b1 = mkBtn('','▸ Play again', ()=>{ wipe(); hideEnd(); goto('start'); });
     btns.appendChild(b1);
     if(e.stat){ const s=document.createElement('p'); s.className='statline'; s.textContent='✓ '+e.stat; btns.appendChild(s); }
   }
@@ -275,13 +275,13 @@ function startGame(fromNode){
 
 /* ---------- BIND UI ---------- */
 function refreshSoundLabel(){
-  $('#sndState').textContent = soundOn?'ligado':'desligado';
+  $('#sndState').textContent = soundOn?'on':'off';
   $('#btnSound') && ($('#btnSound').style.color = soundOn ? 'var(--green)' : 'var(--dim)');
 }
 $('#btnNew').onclick = ()=>{ ac(); snd.choice(); wipe(); startGame('start'); };
-$('#btnSound').onclick = ()=>{ soundOn=!soundOn; localStorage.setItem(SND_KEY, soundOn?'on':'off'); refreshSoundLabel(); if(soundOn) snd.tick(); toast(soundOn?'som ligado':'som desligado'); };
+$('#btnSound').onclick = ()=>{ soundOn=!soundOn; localStorage.setItem(SND_KEY, soundOn?'on':'off'); refreshSoundLabel(); if(soundOn) snd.tick(); toast(soundOn?'sound on':'sound off'); };
 $('#btnMenu').onclick = ()=>{
-  if(confirm('Voltar ao início? Seu progresso fica salvo no último ponto.')){
+  if(confirm('Back to the title screen? Your progress is saved at the last checkpoint.')){
     title.style.display='flex'; hdr.style.visibility='hidden'; clearDock(); checkContinue();
   }
 };

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <meta name="theme-color" content="#0a0e0a">
-<title>OBJETO K-441 — Canal Seguro</title>
+<title>OBJECT K-441 — Secure Channel</title>
 <style>
 :root{
   --bg:#070a08;
@@ -35,7 +35,6 @@ body{
   position:fixed;width:100%;
   -webkit-font-smoothing:antialiased;
 }
-/* scanline / vignette atmosphere */
 body::before{
   content:"";position:fixed;inset:0;pointer-events:none;z-index:9;
   background:radial-gradient(ellipse at 50% 0%,rgba(233,162,59,.05),transparent 55%),
@@ -168,7 +167,6 @@ header{
 .choice.act::before{content:"⚠";color:var(--amber)}
 .choice.danger.act::before{content:"⚡";color:var(--red)}
 
-/* continue tap zone */
 .tapnext{
   width:100%;padding:13px;border-radius:13px;border:1px dashed var(--line);
   background:transparent;color:var(--dim);font-family:var(--mono);font-size:12px;
@@ -206,7 +204,6 @@ header{
 .btn.ghost{border-color:var(--line);background:transparent;color:var(--dim)}
 .btn.amber{border-color:var(--amber-dim);color:var(--amber);background:linear-gradient(180deg,#241a0a,#161006)}
 
-/* death screen variant */
 .screen.death{background:radial-gradient(ellipse at 50% 38%,#1a0d0a,#070403)}
 .screen.death .bigsigil{border-color:#4a2018;box-shadow:0 0 40px rgba(224,102,79,.14);background:radial-gradient(circle at 35% 30%,#2a1410,#0a0504)}
 .screen.death .kicker{color:var(--red)}
@@ -214,14 +211,10 @@ header{
 
 .statline{font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:1px;margin-top:6px}
 
-/* chapter banner */
-.chapbanner{
-  align-self:center;text-align:center;margin:10px 0 4px;padding:6px 0;width:100%;
-}
+.chapbanner{align-self:center;text-align:center;margin:10px 0 4px;padding:6px 0;width:100%}
 .chapbanner .n{font-family:var(--mono);font-size:10px;letter-spacing:3px;color:var(--amber-dim);text-transform:uppercase}
 .chapbanner .t{font-size:13px;letter-spacing:1px;color:#7f9286;margin-top:3px;font-family:var(--mono)}
 
-/* toast */
 .toast{position:absolute;bottom:90px;left:50%;transform:translateX(-50%);z-index:30;
   background:rgba(20,30,23,.96);border:1px solid var(--green-dim);color:var(--green);
   padding:10px 18px;border-radius:20px;font-family:var(--mono);font-size:11px;letter-spacing:1px;
@@ -242,15 +235,15 @@ header{
         <circle cx="12" cy="12" r="3.2" stroke="#e9a23b"/>
       </svg>
     </div>
-    <div class="kicker">Registro Portuário · Berço 44</div>
-    <h2>OBJETO <span class="acc">K-441</span></h2>
-    <p>Um cargueiro abandonado. Uma engenheira que parou de fugir. Uma exilada grávida escondida no porão. E uma máquina vindo apagar o que não cabe nas regras.</p>
-    <p class="statline">Um drama interativo · estilo Lifeline</p>
+    <div class="kicker">Port Registry · Berth 44</div>
+    <h2>OBJECT <span class="acc">K-441</span></h2>
+    <p>An abandoned freighter. An engineer who stopped running. A pregnant exile hiding in the hold. And a machine sent to erase what doesn't fit the rules.</p>
+    <p class="statline">An interactive drama · Lifeline-style</p>
     <div class="btnrow">
-      <button class="btn" id="btnNew">Iniciar transmissão</button>
-      <button class="btn ghost" id="btnContinue" style="display:none">Continuar</button>
+      <button class="btn" id="btnNew">Begin transmission</button>
+      <button class="btn ghost" id="btnContinue" style="display:none">Continue</button>
     </div>
-    <p class="statline" style="margin-top:26px;opacity:.6">Fones de ouvido recomendados · Som <span id="sndState">ligado</span></p>
+    <p class="statline" style="margin-top:26px;opacity:.6">Headphones recommended · Sound <span id="sndState">on</span></p>
   </div>
 
   <!-- ========= GAME ========= -->
@@ -263,16 +256,16 @@ header{
       </div>
       <div class="htxt">
         <h1>HELENE GALLAGHER</h1>
-        <div class="sub"><span class="dot" id="statusDot"></span><span id="statusTxt">canal seguro · online</span></div>
+        <div class="sub"><span class="dot" id="statusDot"></span><span id="statusTxt">secure channel · online</span></div>
       </div>
       <div class="hbtns">
-        <button class="iconbtn" id="btnSound" title="Som">♪</button>
+        <button class="iconbtn" id="btnSound" title="Sound">♪</button>
         <button class="iconbtn" id="btnMenu" title="Menu">↺</button>
       </div>
     </div>
     <div class="threat">
-      <span>RELÉ: GRIM-7</span>
-      <span id="threatTxt">AMEAÇA: <b>NOMINAL</b></span>
+      <span>RELAY: GRIM-7</span>
+      <span id="threatTxt">THREAT: <b>NOMINAL</b></span>
     </div>
   </header>
 
